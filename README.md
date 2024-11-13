@@ -1,2 +1,2 @@
 # correio-cosmico
-Um site de mensagens completamentes anônimas e aleatórias entre usuários desse site.
+Um site de mensagens por cartas completamentes anônimas e aleatórias entre usuários desse site.
