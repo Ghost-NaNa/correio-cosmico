@@ -3,14 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="./assets/styles/login.css">
+    <title>Cadastro</title>
+    <link rel="stylesheet" href="../public/css/login.css">
 </head>
 <body>
     <div class="login-container">
         <div class="login-box">
-            <h2>Bem-vindo de volta! <br>Faça seu login</h2>
-            <form action="" method="POST" id="loginForm">
+            <h2>Bem-vindo ao correio cósmico! <br>Faça seu cadastro</h2>
+            <form action="/cadastro" method="POST">
+                
+                <div class="floating-label">
+                    <input name="nome" type="text" id="nome" placeholder=" " minlength="8" maxlength="20" required>
+                    <label for="nome">Nome de usuário</label>
+                </div>
                 <div class="floating-label">
                     <input name="email" type="email" id="email" placeholder=" " required>
                     <label for="email">Seu email</label>
@@ -18,17 +23,13 @@
                 <div class="floating-label">
                     <input name="senha" type="password" id="senha" placeholder=" " required>
                     <label for="senha">Senha</label>
-                    <span class="fa-regular fa-eye" id="toggle-password" onclick="togglePasswordVisibility()"></span>
                 </div>
-                <button type="submit" class="login-button">LOGIN</button>
-                <p class="signup-text">Ainda não tem uma conta? <a href="./cadastro.php">Clique aqui</a></p>
+                <button type="submit" class="login-button">CADASTRAR</button>
+                <p class="signup-text">Já tem uma conta? <a href="/">Clique aqui</a></p>
             </form>
-            <p id="message" class="message"></p>
         </div>
     </div>
-
-    <script src="./assets/scripts/btn_form.js"></script>
-    <script src="./assets/scripts/login.js"></script>
+    <script src="../public/js/btn_form.js"></script>
     <script src="https://kit.fontawesome.com/735a316080.js" crossorigin="anonymous"></script>
 </body>
 </html>
