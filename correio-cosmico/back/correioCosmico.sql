@@ -4,9 +4,10 @@ USE correioCosmico;
 CREATE TABLE tb_users (
 	id_user INT AUTO_INCREMENT PRIMARY KEY,
     email_user VARCHAR(256) NOT NULL UNIQUE,
-    senha_user VARCHAR(20) NOT NULL,
-    name_user VARCHAR(200) NOT NULL UNIQUE
+    senha_user VARCHAR(256) NOT NULL,
+    name_user VARCHAR(20) NOT NULL UNIQUE
 );
+
 
 CREATE TABLE tb_cartas (
 	id_carta INT AUTO_INCREMENT PRIMARY KEY,

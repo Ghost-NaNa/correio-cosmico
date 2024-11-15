@@ -11,34 +11,35 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Sanitizar os dados recebidos do formulário
     $nome = htmlspecialchars($_POST['nome']);
     $email = htmlspecialchars($_POST['email']);
-    $senha =  htmlspecialchars($_POST['senha']);
+    $senha = htmlspecialchars($_POST['senha']);
 
     // Verificar se o nome de usuário já existe no banco
     $sqlCheck = "SELECT COUNT(*) FROM tb_users WHERE name_user = :nome";
     $stmtCheck = $pdo->prepare($sqlCheck);
     $stmtCheck->execute([':nome' => $nome]);
-    $userExists = $stmtCheck->fetchColumn(); // Verifica se há algum usuário com esse nome
+    $userExists = $stmtCheck->fetchColumn();
 
     if ($userExists > 0) {
-        // Se o nome de usuário já existir, impedir o cadastro e mostrar mensagem
+        // Nome de usuário já existente
         $erro = "Erro: O nome de usuário já está registrado. Por favor, escolha outro.";
     } else {
-        // Preparar a query de inserção, pois o nome de usuário é único
-        $sqlInsert = "INSERT INTO tb_users (email_user, name_user, senha_user) VALUES (:email, :nome, :senha)"; // criptografia md5 é sinistra, mas se a senha for a mesma, o valor é igual sempre
+        // Preparar a query de inserção com senha criptografada
+        $hashedPassword = password_hash($senha, PASSWORD_DEFAULT);
+        $sqlInsert = "INSERT INTO tb_users (email_user, name_user, senha_user) VALUES (:email, :nome, :senha)";
         $stmtInsert = $pdo->prepare($sqlInsert);
 
         try {
-            // Executar a query de inserção, passando os dados como parâmetros
+            // Executar a query de inserção
             $stmtInsert->execute([
                 ':nome' => $nome,
                 ':email' => $email,
-                ':senha' => $senha
+                ':senha' => $hashedPassword
             ]);
-
-            header('Location: .\login.php');
+            header('Location: ./login.html');
+            exit;
         } catch (PDOException $e) {
-            // Mensagem de erro ao tentar inserir
-            // erro = "Erro ao cadastrar o usuário: " . $e->getMessage();
+            // Erro ao cadastrar o usuário
+            $erro = "Erro ao cadastrar o usuário: " . $e->getMessage();
         }
     }
 }
@@ -51,40 +52,29 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro</title>
     <link rel="stylesheet" href="./assets/styles/login.css">
-    </head>
+</head>
 <body>
     <div class="login-container">
         <div class="login-box">
             <h2>Bem-vindo ao correio cósmico! <br>Faça seu cadastro</h2>
             <form action="" method="POST">
                 <div class="floating-label">
-                    <input name="nome" type="name" id="nome" placeholder=" " minlength="8" maxlength="20" required>
+                    <input name="nome" type="text" id="nome" placeholder=" " minlength="8" maxlength="20" required>
                     <label for="nome">Nome de usuário</label>
                     
                     <?php if ($erro): ?>
-                        <p style="color: red;"><?php echo "esse nome de usuário já existe"; ?></p>
+                        <p style="color: red;"><?php echo $erro; ?></p>
                     <?php endif; ?>
                 </div>
                 <div class="floating-label">
                     <input name="email" type="email" id="email" placeholder=" " required>
                     <label for="email">Seu email</label>
-                    
-                    <?php if ($erro): ?>
-                        <p style="color: red;"><?php echo "esse nome de usuário já existe"; ?></p>
-                    <?php endif; ?>
                 </div>
                 <div class="floating-label">
-                    <input nome="senha" type="password" id="senha" placeholder=" " required>
+                    <input name="senha" type="password" id="senha" placeholder=" " required>
                     <label for="senha">Senha</label>
                     <span class="fa-regular fa-eye" id="toggle-password" onclick="togglePasswordVisibility()"></span>
                 </div>
-                <!--       
-                <div class="floating-label">
-                    <input nome="senha" type="password" id="senha" placeholder=" " required>
-                    <label for="senha">Corfime sua senha</label>
-                    <span class="fa-regular fa-eye" id="toggle-password" onclick="togglePasswordVisibility()"></span>
-                </div>
-                -->
                 <button type="submit" class="login-button">CADASTRAR</button>
                 <p class="signup-text">Já tem uma conta? <a href="./login.php">Clique aqui</a></p>
             </form>

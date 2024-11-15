@@ -57,9 +57,14 @@ h2 {
     width: 100%;
     padding: 10px;
     background-color: #333;
+    border: none;
     color: #fff;
     border-radius: 5px;
     outline: none;
+}
+
+.floating-label input:focus {
+    border-bottom: #3500e5;
 }
 
 .floating-label label {

@@ -2,7 +2,7 @@
 $host = 'localhost'; // ou o IP do seu servidor MySQL
 $dbname = 'correioCosmico';
 $username = 'root'; // seu usuário MySQL
-$password = ''; // sua senha MySQL
+$password = 'nana'; // sua senha MySQL
 
 try {
     // Criando a conexão
