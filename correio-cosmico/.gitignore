@@ -1,0 +1,4 @@
+# arquivos que vão ser ignorados pelos commits
+
+node_modules
+.env
