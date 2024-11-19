@@ -15,23 +15,23 @@ export default function conexao(){
  
     return pool
 }
+export async function incluirDados(tabela, dados = [], colunas = []) {
+    console.log("Adicionando os seguintes dados:", dados)
 
-export async function incluirDados(tabela, dados = []) {    
-    console.log("Adicionando os seguintes dados:", dados);
+    // Gera dinamicamente a query com base nas colunas fornecidas
+    const query = `INSERT INTO ${tabela} (${colunas.join(", ")}) VALUES (${colunas.map(() => "?").join(", ")})`
+    console.log("Query gerada:", query)
 
-    const query = `INSERT INTO ${tabela} (name_user, email_user, senha_user) VALUES (?, ?, ?)`;
-    console.log("Query gerada:", query);
-
-    const con = conexao();
+    const con = conexao()
 
     try {
-        const [results] = await con.execute(query, dados);
-        console.log("Resultado da consulta:", results.affectedRows, "linha(s) afetada(s).");
+        const [results] = await con.execute(query, dados)
+        console.log("Resultado da consulta:", results.affectedRows, "linha(s) afetada(s).")
         return results;
     } catch (err) {
-        console.error("Erro ao executar a query:", err.message);
-        return { error: err.message };
+        console.error("Erro ao executar a query:", err.message)
+        throw err
     } finally {
-        await con.end();
+        await con.end()
     }
 }
