@@ -25,7 +25,7 @@ app.use(
         saveUninitialized: true,
         cookie: {
             secure: false,
-            maxAge: 60000, // Sessão dura 1 minuto
+            maxAge: 300000, // Sessão dura 5 minutos, um minuto era muito poico
         },
     })
 )
@@ -57,7 +57,7 @@ app.post("/", async (req, res) => {
             req.session.user_id = data[0].id_user
             req.session.email = data[0].email_user
             req.session.name = data[0].name_user
-            res.render("index", {
+            res.render("formCarta", {
                 email: email,
                 name: data[0].name_user,
                 id: data[0].id_user
@@ -120,7 +120,12 @@ app.get("/cadastro", (req, res) => {
     res.render('cadastro')
 })
 
-// tá aqui sua função Gabriel, beijin na bunda
+app.get("/formcarta", (req, res) => {
+    res.render('formCarta')
+});
+
+
+// tá aqui sua função Gabriel, beijin na bunda (Nathan, tu é mt tchola)
 app.get("/cartas", async (req, res) => {
     const userId = req.session.user_id;
 
@@ -141,6 +146,43 @@ app.get("/cartas", async (req, res) => {
         return res.status(500).send({ message: "Erro interno no servidor" });
     }
 })
+
+//Criei o post, me custou 2 horas de vida pra fazer pegar direito, não mexe nele sem saber oq vc tá fazendo
+app.post("/api/postcarta", (req, res) => {
+    const { titulo_carta, conteudo_carta } = req.body;
+
+    const usuario_carta = req.session.user_id;
+
+    if (!usuario_carta) {
+        return res.status(401).send("Usuário não autenticado.");
+    }
+
+    if (!titulo_carta || !conteudo_carta) {
+        return res.status(400).send("Título e conteúdo são obrigatórios.");
+    }
+
+    const data_carta = new Date();
+    const data_expira_carta = new Date(data_carta);
+    data_expira_carta.setDate(data_carta.getDate() + 3); 
+
+    incluirDados("tb_cartas", [usuario_carta, titulo_carta, conteudo_carta, data_carta, data_expira_carta], ["usuario_carta", "titulo_carta", "conteudo_carta", "data_carta", "data_expira_carta"])
+
+});
+
+
+
+// Rota para pegar os dados, tenho certeza que esse é de longe o jeito menos seguro de se fazer isso
+app.get("/api/user", (req, res) => {
+    if (req.session && req.session.user_id) {
+        res.json({
+            id: req.session.user_id,
+            email: req.session.email,
+            name: req.session.name,
+        });
+    } else {
+        res.status(401).json({ error: "Usuário não autenticado" });
+    }
+});
 
 
 // Finaliza o pool de conexões ao encerrar o servidor
