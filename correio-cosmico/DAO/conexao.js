@@ -4,7 +4,7 @@ import { config } from "dotenv"
  
 config()
  
-export default function conexao(){
+export function conexao(){
     const pool = mysql.createPool({
         host: process.env.HOST_DATABASE, 
         port:  process.env.PORT,
@@ -15,6 +15,7 @@ export default function conexao(){
  
     return pool
 }
+
 export async function incluirDados(tabela, dados = [], colunas = []) {
     console.log("Adicionando os seguintes dados:", dados)
 

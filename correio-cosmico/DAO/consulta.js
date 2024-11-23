@@ -1,4 +1,4 @@
-import conexao from "./conexao.js"
+import { conexao } from "./conexao.js"
 
 export async function buscaTabela(query, params = []) {
     // console.log("Query:", query)
