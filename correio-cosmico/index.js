@@ -23,7 +23,7 @@ app.use(
         saveUninitialized: true,
         cookie: {
             secure: false,
-            maxAge: 300000, // Sessão dura 5 minutos, um minuto era muito poico
+            maxAge: 60 * 60 * 1000, // Sessão dura 5 minutos, um minuto era muito poico (bal, agora dura uma hora resseba)
         },
     })
 )

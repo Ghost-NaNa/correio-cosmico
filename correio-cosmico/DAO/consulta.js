@@ -4,16 +4,17 @@ export async function buscaTabela(query, params = []) {
     // console.log("Query:", query)
     const pool = conexao() // Utiliza o pool de conexões
 
+    console.log('Tentando buscar no banco...')
     try {
         // Executa a consulta utilizando o pool e os parâmetros
-        const [rows, fields] = await pool.execute(query, params)
+        const [rows] = await pool.execute(query, params)
 
-        console.log("Resultados:", rows)
+        console.log("Dados encontrados")
         return rows // Retorna os resultados da consulta
-    } catch (err) {
+    } catch (erro) {
         // Retorna a mensagem de erro caso algo dê errado
-        console.error('Erro ao consultar a tabela:', err.message)
-        return err.message
+        console.error('Erro ao consultar a tabela:', erro.message)
+        return erro.message
     }
 }
 
@@ -30,8 +31,9 @@ export async function buscarCartas(idUser) {
         WHERE 
             usuario_carta = ?`
 
-    const con = conexao() // Inicializa a conexão
+    const con = conexao()
 
+    console.log('tentando buscar cartas...')
     try {
         const [rows] = await con.query(query, [idUser]) 
         return rows 

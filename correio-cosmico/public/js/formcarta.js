@@ -26,4 +26,6 @@ form.addEventListener("submit", (event) => {
         responseMessage.className = 'error';
         console.error(error);
     });
-});
+
+})
+

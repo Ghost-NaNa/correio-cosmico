@@ -2,8 +2,8 @@ import { incluirDados } from "../../DAO/conexao.js"
 import { buscarCartas, buscaTabela } from "../../DAO/consulta.js"
 
 export async function exibirLinks(req, res) {
-    res.render("main");
-} 
+    res.render("main")
+}
 
 export async function fazerLogin(req, res) {
     const { email, senha } = req.body
@@ -52,7 +52,6 @@ export async function verificarLogin(req, res) {
             name: req.session.name,
             id: req.session.user_id
          })
-         id = req.session.user_id
     } else {
         console.log('Usuário não tem um login')
         res.render("login")
