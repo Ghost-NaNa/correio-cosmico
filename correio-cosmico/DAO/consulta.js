@@ -1,5 +1,34 @@
 import { conexao } from "./conexao.js"
 
+//essa banalidade abaixo é para pegar uma linha aleatória de uma tabela
+export async function dadoRandomTabela(tabela) {
+    const pool = conexao();
+
+    try {
+        const queryTotal = `SELECT COUNT(*) AS total FROM ${tabela};`;
+        const [rowsTotal] = await pool.query(queryTotal);
+        const total = rowsTotal[0]?.total;
+
+        if (total === 0) {
+            throw new Error(`A tabela ${tabela} está vazia.`);
+        }
+
+        const Index = Math.floor(Math.random() * total);
+
+        const queryLinha = `SELECT * FROM ${tabela} LIMIT 1 OFFSET ?;`;
+        const [rowsLinha] = await pool.query(queryLinha, [Index]);
+
+        if (rowsLinha.length === 0) {
+            throw new Error('Nenhum registro encontrado na posição sorteada.');
+        }
+
+        return rowsLinha[0];
+    } catch (error) {
+        console.error('Erro ao buscar dado aleatório da tabela:', error);
+        throw new Error('Não foi possível obter um registro aleatório.');
+    }
+}
+
 export async function buscaTabela(query, params = []) {
     // console.log("Query:", query)
     const pool = conexao() // Utiliza o pool de conexões

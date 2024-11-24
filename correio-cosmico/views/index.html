@@ -4,10 +4,80 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Correio Cósmico</title>
-    <script>
-    </script>
+    <style>
+        /* Estilos gerais */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        .containerCartas {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1.cartaTitulo {
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        h2.userCarta {
+            font-size: 1.5em;
+            color: #7f8c8d;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        p.conteudoCarta {
+            font-size: 1.1em;
+            line-height: 1.6;
+            color: #34495e;
+            padding: 10px;
+            background-color: #ecf0f1;
+            border-radius: 8px;
+            text-align: justify;
+            margin-bottom: 30px;
+        }
+
+        /* Adicionando responsividade */
+        @media (max-width: 600px) {
+            .containerCartas {
+                padding: 15px;
+                margin: 20px;
+            }
+
+            h1.cartaTitulo {
+                font-size: 2em;
+            }
+
+            h2.userCarta {
+                font-size: 1.2em;
+            }
+
+            p.conteudoCarta {
+                font-size: 1em;
+            }
+        }
+    </style>
 </head>
 <body>
-   
+   <div class="containerCartas">
+        <h1 class="cartaTitulo"></h1>
+        <h2 class="userCarta"></h2>
+        <p class="conteudoCarta"></p>
+   </div>
+   <button id="trocarCartaBtn">Trocar Carta</button>
+
+   <script type="module" src="../public/js/imprimirCarta.js"></script>
 </body>
 </html>

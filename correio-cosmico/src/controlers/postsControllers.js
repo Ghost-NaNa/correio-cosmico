@@ -1,5 +1,5 @@
 import { incluirDados } from "../../DAO/conexao.js"
-import { buscarCartas, buscaTabela } from "../../DAO/consulta.js"
+import { buscarCartas, buscaTabela, dadoRandomTabela } from "../../DAO/consulta.js"
 
 export async function exibirLinks(req, res) {
     res.render("main")
@@ -25,7 +25,7 @@ export async function fazerLogin(req, res) {
             req.session.user_id = data[0].id_user
             req.session.email = data[0].email_user
             req.session.name = data[0].name_user
-            res.render("formCarta", {
+            res.render("index", {
                 email: email,
                 name: data[0].name_user,
                 id: data[0].id_user
@@ -110,6 +110,24 @@ export async function loadCartasPorId(req, res) {
         } else {
             return res.status(404).send({ message: "Nenhuma carta encontrada para este usuário." });
         }
+    } catch (error) {
+        console.error("Erro ao buscar cartas:", error);
+        return res.status(500).send({ message: "Erro interno no servidor" });
+    }
+}
+
+//Esse aqui busca cartas aleatoriamente
+export async function loadCartasAleatorias(req, res) {
+    const userId = req.session.user_id;
+    const tabela = "tb_cartas"
+
+    if (!userId) {
+        return res.status(401).send({ message: "Usuário não autenticado" });
+    }
+    try {
+        const cartaAleatoria = await dadoRandomTabela(tabela);
+
+        return res.status(200).json(cartaAleatoria);
     } catch (error) {
         console.error("Erro ao buscar cartas:", error);
         return res.status(500).send({ message: "Erro interno no servidor" });

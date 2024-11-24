@@ -5,7 +5,7 @@ import bodyParser from "body-parser"
 import path from "path"
 import ejs from "ejs"
 
-import { cadastrar, exibirLinks, fazerLogin, loadCadastro, loadCarta, loadCartasPorId, postarCarta, verificarLogin, verificarUser } from '../controlers/postsControllers.js'
+import { cadastrar, exibirLinks, fazerLogin, loadCadastro, loadCarta, loadCartasAleatorias, loadCartasPorId, postarCarta, verificarLogin, verificarUser } from '../controlers/postsControllers.js'
 
 const corsOptions = {
     origin: "*",
@@ -24,6 +24,7 @@ const routes = (app) => {
     app.get('/cadastro', loadCadastro);
     app.get('/formcarta', loadCarta);
     app.get("/api/user", verificarUser);
+    app.get('/api/cartaaleatoria', loadCartasAleatorias)
 
     app.post('/login', fazerLogin);
     app.post('/cadastro', cadastrar);
