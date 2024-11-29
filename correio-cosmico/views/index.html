@@ -1,83 +1,72 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Correio Cósmico</title>
-    <style>
-        /* Estilos gerais */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
-        }
-
-        .containerCartas {
-            max-width: 800px;
-            margin: 50px auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        h1.cartaTitulo {
-            font-size: 2.5em;
-            color: #2c3e50;
-            margin-bottom: 10px;
-            text-align: center;
-            text-transform: uppercase;
-        }
-
-        h2.userCarta {
-            font-size: 1.5em;
-            color: #7f8c8d;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        p.conteudoCarta {
-            font-size: 1.1em;
-            line-height: 1.6;
-            color: #34495e;
-            padding: 10px;
-            background-color: #ecf0f1;
-            border-radius: 8px;
-            text-align: justify;
-            margin-bottom: 30px;
-        }
-
-        /* Adicionando responsividade */
-        @media (max-width: 600px) {
-            .containerCartas {
-                padding: 15px;
-                margin: 20px;
-            }
-
-            h1.cartaTitulo {
-                font-size: 2em;
-            }
-
-            h2.userCarta {
-                font-size: 1.2em;
-            }
-
-            p.conteudoCarta {
-                font-size: 1em;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="../public/css/roots.css">
+    <link rel="stylesheet" href="../public/css/styles.css">
+    <link rel="stylesheet" href="../public/css/formcarta.css">
 </head>
-<body>
-   <div class="containerCartas">
-        <h1 class="cartaTitulo"></h1>
-        <h2 class="userCarta"></h2>
-        <p class="conteudoCarta"></p>
-   </div>
-   <button id="trocarCartaBtn">Trocar Carta</button>
 
-   <script type="module" src="../public/js/imprimirCarta.js"></script>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <h1>Correio Cósmico</h1>
+            </div>
+            <ul class="nav-links">
+                <!-- para enfeitar -->
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">Sobre</a></li>
+                <li><a href="#contact">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="exibicao">
+        <section class="containerCartas">
+        </section>
+
+        <section class="form-container">
+            <h2>Enviar Carta</h2>
+            <form id="carta-form">
+                <label for="titulo_carta">Título da Carta:</label>
+                <input class="sujo" type="text" id="titulo_carta" name="titulo_carta" maxlength="25" required>
+    
+                <label for="conteudo_carta">Conteúdo:</label>
+                <textarea class="sujo" id="conteudo_carta" name="conteudo_carta" maxlength="300" required></textarea>
+    
+    
+                <button class="acao-btn" type="submit">Adicionar Carta</button>
+            </form>
+    
+            <p id="mensagemResposta"></p>
+            <script src="../public/js/formcarta.js"></script>
+        </section>    
+
+        <section class="acoes">
+            <button class="acao-btn" id="trocarCartaBtn">
+                <span></span>
+                <span>Trocar carta</span>
+            </button>
+
+            <button class="acao-btn" id="trocarElemento">
+                <span></span>
+                <span>Enviar uma carta</span>
+            </button>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Correio Cósmico. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="../public/js/imprimirCarta.js"></script>
+    <script src="../public/js/slider.js"></script>
+    <script src="../public/js/formcarta.js"></script>
+    <script src="../public/js/trocarVisualizacao.js"></script>
 </body>
+
 </html>

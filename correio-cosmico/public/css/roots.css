@@ -1,0 +1,8 @@
+:root {
+    /* cores de fundo */
+    --bg-color: #1c1c1c;
+    --element-bg-color: #222;
+
+    /* cores de texto */ 
+    --titulo-destaque: #621580;
+}

@@ -32,7 +32,6 @@ function renderCarta(carta) {
         <div class="carta">
             <h2>${carta.titulo_carta}</h2>
             <p>${carta.conteudo_carta}</p>
-            <small>Data criada: ${new Date(carta.data_carta).toLocaleDateString()}</small>
             <br>
             <small>Expira em: ${new Date(carta.data_expira_carta).toLocaleDateString()}</small>
         </div>

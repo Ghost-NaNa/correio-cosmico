@@ -1,0 +1,122 @@
+/* Estilos para o tema escuro com tons de roxo */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: #fff;
+    line-height: 1.6;
+}
+
+header {
+    background-color: #0b0b0b;
+    padding: 20px;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 2rem;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+}
+
+.nav-links li {
+    margin-left: 20px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--titulo-destaque);
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #e74c3c;
+}
+
+h1 {
+    color: var(--titulo-destaque);
+    font-size: 2rem;
+}
+
+.containerCartas {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+}
+
+.carta {
+    background-color: var(--element-bg-color);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+    width: 80%;
+}
+
+
+.carta h2 {
+    font-size: 1.5rem;
+    color: var(--titulo-destaque);
+}
+
+.carta p {
+    font-size: 1rem;
+    margin: 10px 0;
+}
+
+.carta small {
+    font-size: 0.9rem;
+    color: #bb12f3;
+}
+
+.acoes {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    padding: 20px;
+}
+
+.acoes .acao-btn {
+    width: 50%;
+    padding: 10px;
+    margin-top: 20px;
+    background: rgb(58,0,97);
+    background: linear-gradient(90deg, rgba(58,0,97,1) 0%, rgba(67,11,142,1) 35%, rgba(70,0,255,1) 100%);    border: none;
+    background-position: left;
+    color: #fff;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    background-size: 200%;
+    background-position: left;
+    transition: background-position .5s ease; 
+}
+
+.acoes .acao-btn  {
+    background-position: right;
+}
+
+footer {
+    background-color: var(--element-bg-color);
+    padding: 20px;
+    text-align: center;
+}
+
+footer p {
+    color: #95a5a6;
+    font-size: 0.9rem;
+}

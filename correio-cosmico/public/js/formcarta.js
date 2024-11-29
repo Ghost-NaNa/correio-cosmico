@@ -27,5 +27,15 @@ form.addEventListener("submit", (event) => {
         console.error(error);
     });
 
+    alert('carta postada!')
+    limparDados()
 })
+
+function limparDados() {
+    let sujinhos = document.querySelectorAll('.sujo')
+
+    sujinhos.forEach((item) => {
+        item.value = " "
+    })
+}
 
