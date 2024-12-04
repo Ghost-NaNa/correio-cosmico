@@ -1,5 +1,6 @@
 const formView = document.querySelector('.form-container')
 const cartas = document.querySelector('.containerCartas')
+const btnCarta = document.querySelector('#trocarCartaBtn')
 
 
 const container = document.querySelector("#exibicao")
@@ -17,6 +18,7 @@ function mudarExibicao() {
     if (cartas.style.display == 'block') {
 
         cartas.style.display = 'none'
+        btnCarta.style.display = 'none'
         formView.style.display = 'block'
 
         btn.textContent = 'ver cartas'
@@ -24,6 +26,7 @@ function mudarExibicao() {
         
         formView.style.display = 'none'
         cartas.style.display = 'block'
+        btnCarta.style.display = 'block'
 
         btn.textContent = 'enviar uma carta'
     }

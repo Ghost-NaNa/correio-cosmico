@@ -50,10 +50,11 @@ h1 {
 }
 
 .containerCartas {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 40px;
+    padding: 30px;
+    border-radius: 8px;
+    margin: 40px auto;
+    width: 80%;
+    max-width: 600px;
 }
 
 .carta {
@@ -91,7 +92,8 @@ h1 {
 }
 
 .acoes .acao-btn {
-    width: 50%;
+    width: 100%;
+    max-width: 600px;
     padding: 10px;
     margin-top: 20px;
     background: rgb(58,0,97);
